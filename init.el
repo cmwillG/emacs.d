@@ -7,8 +7,8 @@
 (set-scroll-bar-mode nil)
 (global-visual-line-mode 1);; autowrap line
 ; default windows size
-(set-frame-width (selected-frame) 110)
-(set-frame-height (selected-frame) 33)
+(set-frame-width (selected-frame) 130)
+(set-frame-height (selected-frame) 45)
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message ";; Happy Day!")
 
@@ -92,24 +92,12 @@
   ("C-c C-y C-n" . yas-new-snippet)
   )
 
-;; doom theme
-(use-package doom-themes
+;; dracula theme
+(use-package dracula-theme
   :ensure t
   :config
-  ;; Global settings (defaults)
-  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-        doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-one t)
-
-  ;; Enable flashing mode-line on errors
-  (doom-themes-visual-bell-config)
-  ;; Enable custom neotree theme (all-the-icons must be installed!)
-  ;;(doom-themes-neotree-config)
-  ;; or for treemacs users
-  ;;(setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
-  ;;(doom-themes-treemacs-config)
-  ;; Corrects (and improves) org-mode's native fontification.
-  (doom-themes-org-config))
+  (load-theme 'dracula t)
+  )
 
 ;; mode line
 (use-package doom-modeline
@@ -138,7 +126,6 @@
 ;; company
 (use-package company
   :ensure t
-  :init (global-company-mode)
   :config
   (setq company-minimum-prefix-length 1)
   (setq company-idle-delay 0.0)
@@ -147,7 +134,10 @@
   (setq company-tooltip-limit 10)
   (setq company-tooltip-align-annotations t)
   (setq company-tooltip-flip-when-above t)
+  :hook
+  (prog-mode . company-mode)
   )
+
 ;; company-box
 (use-package company-box
   :ensure t
@@ -251,6 +241,13 @@
 
 (use-package magit
   :ensure t
+  )
+
+(use-package pdf-tools
+  :ensure t
+  :config
+  (pdf-tools-install)
+  (pdf-loader-install)
   )
 
 (custom-set-variables
