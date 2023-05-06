@@ -9,6 +9,8 @@
 ; default windows size
 (set-frame-width (selected-frame) 110)
 (set-frame-height (selected-frame) 33)
+(setq inhibit-startup-screen t)
+(setq initial-scratch-message ";; Happy Day!")
 
 ;; spell check config
 (setq-default ispell-program-name "aspell")
@@ -230,25 +232,6 @@
   :ensure t
   :if (display-graphic-p))
 
-;; dashboard
-(use-package dashboard
-  :ensure t
-  :init
-  (setq dashboard-banner-logo-title "")
-  (setq dashboard-startup-banner 'logo)
-  (setq dashboard-page-separator "\n\f\n")
-  (setq dashboard-path-style 'truncate-middle)
-  (setq dashboard-path-max-length 60)
-  (setq dashboard-icon-type 'all-the-icons) ;; use `all-the-icons' package
-  (setq dashboard-set-heading-icons t)
-  (setq dashboard-set-file-icons t)
-  (setq dashboard-items '((recents . 5)
-			  (bookmarks . 5)))
-  (setq dashboard-modify-heading-icons '((recents . "file-text")
-                                  (bookmarks . "book")))
-  (setq dashboard-set-init-info nil)
-  (setq dashboard-set-footer nil)
-  (dashboard-setup-startup-hook))
 
 (use-package tex
   :defer t
